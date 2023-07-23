@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Daily Medicines
+{% endblock %}
+
+{% block main %}
+<script type="text/javascript" 
+		src="/static/register_service_worker.js">
+</script>
+<script type="text/javascript">
+		registerServiceWorker(
+			"/static/service_worker.js",
+			"{{config['VAPID_PUBLIC_KEY']}}",
+			"/register"
+		);
+</script>
+<div class="mb-3">
+    <h2>My Medicines</h2>
+    <table class="table">
+        <tbody>
+            {% for medicine in medicines %}
+        <tr>
+            <td>{{ medicine.name }}</td>
+            <td>{{ medicine.schedule_time_1 }}</td>
+            <td>{{ medicine.schedule_time_2 }}</td>
+            <td>{{ medicine.schedule_time_3 }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
